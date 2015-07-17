@@ -1,0 +1,10 @@
+C:\Users\galz\Documents\Visual Studio 2013\Projects\jSniff\jSniff.Example\bin\Debug\jSniff.Example.dll
+C:\Users\galz\Documents\Visual Studio 2013\Projects\jSniff\jSniff.Example\bin\Debug\jSniff.Example.pdb
+C:\Users\galz\Documents\Visual Studio 2013\Projects\jSniff\jSniff.Example\bin\Debug\WebDriver.dll
+C:\Users\galz\Documents\Visual Studio 2013\Projects\jSniff\jSniff.Example\bin\Debug\WebDriver.xml
+C:\Users\galz\Documents\Visual Studio 2013\Projects\jSniff\jSniff.Example\obj\Debug\jSniff.Example.csprojResolveAssemblyReference.cache
+C:\Users\galz\Documents\Visual Studio 2013\Projects\jSniff\jSniff.Example\obj\Debug\jSniff.Example.dll
+C:\Users\galz\Documents\Visual Studio 2013\Projects\jSniff\jSniff.Example\obj\Debug\jSniff.Example.pdb
+C:\Users\galz\Documents\Visual Studio 2013\Projects\jSniff\jSniff.Example\bin\Debug\chromedriver.exe
+C:\Users\galz\Documents\Visual Studio 2013\Projects\jSniff\jSniff.Example\bin\Debug\jSniff.dll
+C:\Users\galz\Documents\Visual Studio 2013\Projects\jSniff\jSniff.Example\bin\Debug\jSniff.pdb

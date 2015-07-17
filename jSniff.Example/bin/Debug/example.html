@@ -1,0 +1,58 @@
+<html>
+	<title>jSniff Example</title>
+	<head>
+		<script type="text/javascript" src="jSniff.js"></script>
+		<script>
+			function multiply(a, b){
+				return a * b;
+			}
+
+            function demonstrate() {
+                if (!demonstrate.isInitialized) {
+                    jSniff.sniffify(window, 'multiply', 'window_multiply', function() { console.log('log from custom function');} );
+                    demonstrate.isInitialized = true;
+                }
+
+                var a = document.getElementById("a").value;
+                var b = document.getElementById("b").value;
+
+                multiply(a, b);
+				
+				var params = jSniff.getLastInvocationParams('window_multiply');
+				document.getElementById("aValue").innerHTML = params['a'];
+				document.getElementById("bValue").innerHTML = params['b'];
+            }
+		</script>
+	</head>
+    <body style="margin: 50px;">
+        <p>
+            I'll demonstrate a simple example of function sniffing with the following function:
+        </p>
+        <p>
+            function multiply(a, b){
+            <br />
+            <span style="margin-left: 30px;">return a * b;</span>
+            <br />
+            }
+        </p>
+        <div>
+            <span>a:</span>
+            <input type="text" id="a" value="2" />
+            <span>b:</span>
+            <input type="text" id="b" value="8" />
+            <input type="button" value="execute!" onclick="demonstrate();" />
+        </div>
+        <div style="margin-top:30px;" id="sniffResult">
+            <label>
+                sniff result:
+            </label>
+            <div>
+                <span>a:</span><span id="aValue"></span>
+            </div>
+            <div>
+                <span>b:</span><span id="bValue"></span>
+            </div>
+        </div>
+    </body>
+</html>
+	

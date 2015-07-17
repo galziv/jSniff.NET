@@ -43,7 +43,7 @@ public Invocation[] GetInvocations(string sniffName)
 ```
 This method returns an array of Invocation object. Invocation object consists of the sniffed data and has two properties:
  - executionDate: Javascript Date object with the execution date.
-  - params: Array of the execution parameters. Each element in array is Dictionary<string, object> (parameter name,paramter value)
+  - params: Array of the execution parameters. Each element in array is Dictionary&lt;string, object&gt; (parameter name,paramter value)
 
 <br />
 #####jSniff.getLastInvocation
@@ -53,7 +53,7 @@ pubilc Invocation GetLastInvocation(string sniffName)
 ```
 This method returns the last execution sniffed data. the Invocation object has two properties:
  - executionDate: Javascript Date object with the execution date.
- - params: Array of the execution parameters. Each element in array is Dictionary&lt;string, object> (parameter name,paramter value)
+ - params: Array of the execution parameters. Each element in array is Dictionary&lt;string, object&gt; (parameter name,paramter value)
 
 <br />
 #####jSniff.getInvocations
@@ -61,5 +61,5 @@ This method returns the last execution sniffed data. the Invocation object has t
 ```c#
 Dictionary<string, object> GetLastInvocationParams(string sniffName)
 ```
-This method returns an array of the last execution parameters. Each element in the array is Dictionary<string, object>
+This method returns an array of the last execution parameters. Each element in the array is Dictionary&lt;string, object&gt;
 

@@ -53,7 +53,7 @@ pubilc Invocation GetLastInvocation(string sniffName)
 ```
 This method returns the last execution sniffed data. the Invocation object has two properties:
  - executionDate: Javascript Date object with the execution date.
- - params: Array of the execution parameters. Each element in array is Dictionary<string, object> (parameter name,paramter value)
+ - params: Array of the execution parameters. Each element in array is Dictionary&lt;string, object> (parameter name,paramter value)
 
 <br />
 #####jSniff.getInvocations

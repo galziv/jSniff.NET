@@ -61,5 +61,5 @@ This method returns the last execution sniffed data. the Invocation object has t
 ```c#
 Dictionary<string, object> GetLastInvocationParams(string sniffName)
 ```
-This method returns an array of the last execution parameters. Each element in the array is Dictionary&lt;string, object&gt;
+This method returns an array of the last execution parameters. Each element in the array is Dictionary&lt;string, object&gt; (parameter name,paramter value)
 

@@ -62,15 +62,17 @@ namespace jSniff
 		}
         
         // used toString since it returned null when was a js Date object - jSniff.NET
-        var text = 'window.jSniff.spies.' + sniffName + '.invocations.push({ executionDate: new Date().toString(), params: {} });';
+        var text = 'var jsniffExecutionStart = Date.now();window.jSniff.spies.' + sniffName + '.invocations.push({ executionDate: jsniffExecutionStart, params: {} });';
 
         text += paramsAuditingFunc.replace(/\s/gm, '').replace(/'/gm, '\\\'');
 
         text += customFunc ? 'window.jSniff.spies[\\\'' + sniffName + '\\\'][' + uniqueId + ']();' : '';
 
-        text += 'window.jSniff.spies.' + sniffName + '.toExecute(' + evalParams.join(',').replace(/'/g, '') + ')';
-
-        var toEval = 'new Function(' + evalParams.join(',') + ',\'' + text + '\')';
+        text += 'window.jSniff.spies.' + sniffName + '.toExecute(' + evalParams.join(',').replace(/'/g, '') + ');';
+		
+		var durationSnippet = 'window.jSniff.spies.' + sniffName + '.invocations[window.jSniff.spies.' + sniffName + '.invocations.length - 1].duration = Date.now() - jsniffExecutionStart;'
+		
+        var toEval = 'new Function(' + evalParams.join(',') + ',\'' + text + durationSnippet + '\')';
 
         obj[funcName] = eval(toEval);
     };
@@ -119,18 +121,13 @@ namespace jSniff
 
         private static bool isScriptLoaded = false;
         private const string EXECUTION_DATE = "executionDate";
+        private const string DURATION = "duration";
         private const string PARAMS = "params";
         private IJavaScriptExecutor driver;
 
         public Manager(IJavaScriptExecutor driver)
         {
             this.driver = driver;
-        }
-
-
-        private static DateTime ConvertJsDateToDateTime(string date)
-        {
-            return DateTime.ParseExact(Regex.Match(date, "(.*) GMT").Groups[1].Value, "ddd MMM d yyyy HH:mm:ss", CultureInfo.InvariantCulture);
         }
 
         private static Invocation[] ConvertToInvocation(object result)
@@ -148,7 +145,8 @@ namespace jSniff
 
                 return new Invocation
                 {
-                    ExecutionDate = ConvertJsDateToDateTime(dictionary[EXECUTION_DATE].ToString()),
+                    ExecutionDate = jSniff.Converter.ConvertJsDateToDateTime(dictionary[EXECUTION_DATE].ToString()),
+                    Duration = long.Parse(dictionary[DURATION].ToString()),
                     ExecutionParameters = paramsDictionary
                 };
 

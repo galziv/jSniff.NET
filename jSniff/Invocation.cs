@@ -10,6 +10,8 @@ namespace jSniff
     {
         public DateTime ExecutionDate { get; set; }
 
+        public long Duration { get; set; }
+
         public Dictionary<string, object> ExecutionParameters { get; set; }
     }
 }

@@ -1,14 +1,16 @@
 ﻿using System;
+using System.Runtime;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.IE;
 
 namespace jSniff.Example
 {
     [TestClass]
     public class jSniffTest
     {
-        private ChromeDriver driver = new ChromeDriver();
+        private ChromeDriver driver = new ChromeDriver(@"C:\Github\jSniff.NET\jSniff.Example");
         private readonly string exmampleUrl = "file:///" + Environment.CurrentDirectory.Replace('\\', '/') + "/../../example.html";
 
         [TestMethod]
@@ -38,6 +40,7 @@ namespace jSniff.Example
             Assert.AreEqual(lastInvocation.ExecutionParameters["b"], b, "last invocation b value is incorrect");
             Assert.AreEqual(parameters["a"], a,"parameters a value is incorrect");
             Assert.AreEqual(parameters["b"], b,"parameters b value is incorrect");
+            Assert.IsTrue(lastInvocation.Duration > 0);
         }
 
         // This closes the driver down after the test has finished.

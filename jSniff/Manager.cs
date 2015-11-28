@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using OpenQA.Selenium;
+using System.Collections.Generic;
 
 namespace jSniff
 {
@@ -120,9 +115,6 @@ namespace jSniff
         #endregion
 
         private static bool isScriptLoaded = false;
-        private const string EXECUTION_DATE = "executionDate";
-        private const string DURATION = "duration";
-        private const string PARAMS = "params";
         private IJavaScriptExecutor driver;
 
         public Manager(IJavaScriptExecutor driver)
@@ -130,36 +122,14 @@ namespace jSniff
             this.driver = driver;
         }
 
-        private static Invocation[] ConvertToInvocation(object result)
-        {
-            return ((IReadOnlyCollection<object>)result).Select(x =>
-            {
-                var dictionary = (Dictionary<string, object>)x;
-                var parameters = ((Dictionary<string, object>)dictionary[PARAMS]);
-                var paramsDictionary = new Dictionary<string, object>(parameters.Count);
-
-                foreach (string key in parameters.Keys)
-                {
-                    paramsDictionary.Add(key, parameters[key]);
-                }
-
-                return new Invocation
-                {
-                    ExecutionDate = jSniff.Converter.ConvertJsDateToDateTime(dictionary[EXECUTION_DATE].ToString()),
-                    Duration = long.Parse(dictionary[DURATION].ToString()),
-                    ExecutionParameters = paramsDictionary
-                };
-
-            }).ToArray();
-        }
-
+        
         private void LoadScript()
         {
             driver.ExecuteScript(JSNIFF_SCRIPT, null);
             isScriptLoaded = true;
         }
 
-        public void Sniffify(string obj, string functionName, string sniffName, string customFunc = "")
+        public Sniff Sniffify(string obj, string functionName, string sniffName, string customFunc = "")
         {
             string toExecute = string.Empty;
 
@@ -178,8 +148,11 @@ namespace jSniff
             }
 
             driver.ExecuteScript(toExecute, null);
+
+            return new Sniff(driver, sniffName);
         }
 
+        [Obsolete("use Sniff object instance returned from Sniffify instead.")]
         public Invocation[] GetInvocations(string sniffName)
         {
             if (!isScriptLoaded)
@@ -188,18 +161,26 @@ namespace jSniff
             }
 
             var result = driver.ExecuteScript(string.Format("return jSniff.getInvocations('{0}')", sniffName), null);
-            return ConvertToInvocation(result);
+            return Converter.ConvertToInvocation(result);
         }
 
+        [Obsolete("use Sniff object instance returned from Sniffify instead.")]
         public Invocation GetLastInvocation(string sniffName)
         {
             var invocations = GetInvocations(sniffName);
             return invocations[invocations.Length - 1];
         }
 
+        [Obsolete("use Sniff object instance returned from Sniffify instead.")]
         public Dictionary<string, object> GetLastInvocationParams(string sniffName)
         {
             return GetLastInvocation(sniffName).ExecutionParameters;
+        }
+
+        [Obsolete("use Sniff object instance returned from Sniffify instead.")]
+        public long GetLastInvocationDuration(string sniffName)
+        {
+            return GetLastInvocation(sniffName).Duration;
         }
     }
 }

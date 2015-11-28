@@ -23,15 +23,16 @@ namespace jSniff.Example
             string b = "7";
 
             // execute
-            manager.Sniffify("window", "multiply", "window_multiply", "function() { console.log('log from custom function');}");
+            Sniff sniff =  manager.Sniffify("window", "multiply", "window_multiply", "function() { console.log('log from custom function');}");
             driver.FindElement(By.Id("a")).Clear();
             driver.FindElement(By.Id("a")).SendKeys(a);
             driver.FindElement(By.Id("b")).Clear();
             driver.FindElement(By.Id("b")).SendKeys(b);
             driver.FindElement(By.Id("execute")).Click();
             driver.FindElement(By.Id("execute")).Click();
-            var invocations = manager.GetInvocations("window_multiply");
-            var lastInvocation = manager.GetLastInvocation("window_multiply");
+
+            var invocations = sniff.GetInvocations("window_multiply");
+            var lastInvocation = sniff.GetLastInvocation("window_multiply");
             var parameters = manager.GetLastInvocationParams("window_multiply");
 
             // expect

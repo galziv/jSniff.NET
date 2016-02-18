@@ -35,8 +35,8 @@ Sniff sniff = manager.Sniffify("window", "multiply", "window_multiply", "functio
 ```
 
 <br />
-#####retrieve sniffed data using our Sniff class instance 'sniff' variable:
-#####sniff.getInvocations
+#####Sniff Class Methods
+#####GetInvocations
 ----
 ```c#
 public Invocation[] GetInvocations(string sniffName)
@@ -46,7 +46,7 @@ This method returns an array of Invocation object. Invocation object consists of
   - params: Array of the execution parameters. Each element in array is Dictionary&lt;string, object&gt; (parameter name,paramter value)
 
 <br />
-#####sniff.getLastInvocation
+#####GetLastInvocation
 ----
 ```c#
 pubilc Invocation GetLastInvocation(string sniffName)
@@ -56,7 +56,7 @@ This method returns the last execution sniffed data. the Invocation object has t
  - params: Array of the execution parameters. Each element in array is Dictionary&lt;string, object&gt; (parameter name,paramter value)
 
 <br />
-#####sniff.getInvocations
+#####GetInvocations
 ----
 ```c#
 Dictionary<string, object> GetLastInvocationParams(string sniffName)

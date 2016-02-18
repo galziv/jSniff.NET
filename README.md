@@ -72,4 +72,4 @@ DateTime ExecutionDate
 long Duration
 Dictionary<string, object> ExecutionParameters
 ```
-
+- Duration is in milliseconds

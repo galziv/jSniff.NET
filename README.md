@@ -63,3 +63,13 @@ Dictionary<string, object> GetLastInvocationParams(string sniffName)
 ```
 This method returns an array of the last execution parameters. Each element in the array is Dictionary&lt;string, object&gt; (parameter name,paramter value)
 
+
+<br />
+#####Invocation Class Propeties
+----
+```c#
+DateTime ExecutionDate
+long Duration
+Dictionary<string, object> ExecutionParameters
+```
+

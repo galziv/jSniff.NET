@@ -14,7 +14,7 @@ jSniff.Manager manager = new Manager(new ChromeDriver());
 #####Manager.Sniffify
 ----
 ```c#
-public void Sniffify(string obj, string functionName, string sniffName, string customFunc = "")
+public Sniff Sniffify(string obj, string functionName, string sniffName, string customFunc = "")
 ```
 
  - obj: The object on which the function exists (if it is a function declaration then use window)
@@ -31,12 +31,12 @@ function multiply(a,b){
 
 so to sniff it we execute:
 ```c#
-manager.Sniffify("window", "multiply", "window_multiply", "function() { console.log('log from custom function');}");
+Sniff sniff = manager.Sniffify("window", "multiply", "window_multiply", "function() { console.log('log from custom function');}");
 ```
 
 <br />
-#####retrieve sniffed data using:
-#####jSniff.getInvocations
+#####retrieve sniffed data using our Sniff class instance 'sniff' variable:
+#####sniff.getInvocations
 ----
 ```c#
 public Invocation[] GetInvocations(string sniffName)
@@ -46,7 +46,7 @@ This method returns an array of Invocation object. Invocation object consists of
   - params: Array of the execution parameters. Each element in array is Dictionary&lt;string, object&gt; (parameter name,paramter value)
 
 <br />
-#####jSniff.getLastInvocation
+#####sniff.getLastInvocation
 ----
 ```c#
 pubilc Invocation GetLastInvocation(string sniffName)
@@ -56,7 +56,7 @@ This method returns the last execution sniffed data. the Invocation object has t
  - params: Array of the execution parameters. Each element in array is Dictionary&lt;string, object&gt; (parameter name,paramter value)
 
 <br />
-#####jSniff.getInvocations
+#####sniff.getInvocations
 ----
 ```c#
 Dictionary<string, object> GetLastInvocationParams(string sniffName)

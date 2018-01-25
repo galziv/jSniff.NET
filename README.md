@@ -7,10 +7,13 @@ jSniff.NET is [jSniff.js] for .NET developers to be used with Selenium WebDriver
 Check [jSniff.js] for more details on the functions.
 <br/>
 ###Initialize the jSniff manager with Selenium web driver
+
 ```c#
 jSniff.Manager manager = new Manager(new ChromeDriver());
 ```
+
 ##sniff the function using:
+
 ##Manager.Sniffify
 ----
 ```c#
@@ -35,8 +38,8 @@ Sniff sniff = manager.Sniffify("window", "multiply", "window_multiply", "functio
 ```
 
 <br />
-#####Sniff Class Methods
-#####GetInvocations
+###Sniff Class Methods
+###GetInvocations
 ----
 ```c#
 public Invocation[] GetInvocations(string sniffName)
@@ -46,7 +49,7 @@ This method returns an array of Invocation object. Invocation object consists of
   - params: Array of the execution parameters. Each element in array is Dictionary&lt;string, object&gt; (parameter name,paramter value)
 
 <br />
-#####GetLastInvocation
+###GetLastInvocation
 ----
 ```c#
 pubilc Invocation GetLastInvocation(string sniffName)
@@ -56,7 +59,7 @@ This method returns the last execution sniffed data. the Invocation object has t
  - params: Array of the execution parameters. Each element in array is Dictionary&lt;string, object&gt; (parameter name,paramter value)
 
 <br />
-#####GetInvocations
+###GetInvocations
 ----
 ```c#
 Dictionary<string, object> GetLastInvocationParams(string sniffName)
@@ -65,7 +68,7 @@ This method returns an array of the last execution parameters. Each element in t
 
 
 <br />
-#####Invocation Class Propeties
+###Invocation Class Propeties
 ----
 ```c#
 DateTime ExecutionDate

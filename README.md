@@ -4,8 +4,10 @@ jSniff.NET is [jSniff.js] for .NET developers to be used with Selenium WebDriver
 [jSniff.js]:https://github.com/galziv/jSniff
 
 ## How to use
+
 Check [jSniff.js] for more details on the functions.
 <br/>
+
 ###Initialize the jSniff manager with Selenium web driver
 
 ```c#

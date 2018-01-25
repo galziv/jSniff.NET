@@ -6,12 +6,12 @@ jSniff.NET is [jSniff.js] for .NET developers to be used with Selenium WebDriver
 ## How to use
 Check [jSniff.js] for more details on the functions.
 <br/>
-####Initialize the jSniff manager with Selenium web driver
+###Initialize the jSniff manager with Selenium web driver
 ```c#
 jSniff.Manager manager = new Manager(new ChromeDriver());
 ```
-#####sniff the function using:
-#####Manager.Sniffify
+##sniff the function using:
+##Manager.Sniffify
 ----
 ```c#
 public Sniff Sniffify(string obj, string functionName, string sniffName, string customFunc = "")
